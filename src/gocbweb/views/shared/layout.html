@@ -1,0 +1,31 @@
+<!DOCTYPE "html">
+<html>
+<head>
+<link rel="stylesheet" href="/static/style.css" type="text/css" />
+<!--<script src="/static/prefix-free.js"></script> --> 
+<title>{{.Data.Title}}</title>
+</head>
+<body>
+{{template "body" .}}
+</body>
+</html>
+
+{{define "album"}}
+<table align="center" cellspacing="10">
+<caption>{{.Value.Name}}</caption>
+<tr>
+  <th>Name</th>
+  <th>Genre</th>
+  <th>Year</th>
+</tr>
+{{if .Value.Albums}}
+{{range .GetAlbums}}
+<tr>
+  <td>{{.Name}}</td>
+  <td>{{if .GetGenreName}}{{.GetGenreName}}{{else}}{{.GenreId}}{{end}}</td>
+  <td>{{.Year}}</td>
+</tr>
+{{end}}
+{{end}}
+</table>
+{{end}}

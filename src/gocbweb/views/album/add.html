@@ -1,0 +1,29 @@
+{{define "body"}}
+<form action="/album/verify/{{.Data.Id}}" method="post">
+<table>
+<tr>
+<td>Name:</td><td><input type="text" name="name" required /></td><td></td>
+</tr>
+<tr>
+<td>Year (0 if unknown):</td><td><input type="number" name="year" required /></td><td/>
+</tr>
+<tr>
+<td>Genre:</td><td><input type="radio" name="genretype" value="existing" checked /></td><td><select name="genre_id">
+{{range .Model}}
+<option value="{{.Id}}">{{.Value.Name}}</option>
+{{end}}
+</select></td>
+</tr>
+<tr>
+<td></td><td><input type="radio" name="genretype" value="new" /></td><td>
+<table>
+<tr>
+<td>Name:</td><td><input type="text" name="genre_name" /></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<input type="submit" value="Add Album" />
+</form>
+{{end}}

@@ -1,0 +1,36 @@
+{{define "body"}}
+
+<div class="wrap">
+
+<nav>
+
+<ul class="menu">
+
+<li><a href="#">Menu</a>
+
+<ul>
+<li><a href="/album/add/{{.Model.Id}}">Add an album</a></li>
+
+<li><a href='/home/index'>Back to home page</a></li>
+</ul>
+</li> 
+
+</ul>
+
+</nav>
+
+</div>
+
+<div align="center">
+
+{{with .Model}}
+
+{{template "album" .}}
+
+{{end}}
+
+</div>
+
+{{end}}
+
+</div>

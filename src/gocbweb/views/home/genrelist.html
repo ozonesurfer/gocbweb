@@ -1,0 +1,8 @@
+{{define "body"}}
+<h3>Click on a genre:</h3>
+<ul>
+{{range .Model}}
+<li><a href='/home/bygenre/{{.Id}}'>{{.Value.Name}}</a></li>
+{{end}}
+</ul>
+{{end}}
