@@ -62,7 +62,7 @@ func GetAll(docType string) []MyDoc {
 	defer bucket.Close()
 	viewString := "all_" + docType
 	results, err := bucket.View(gocbweb.DDOC, viewString,
-		map[string]interface{}{"full_set": true})
+		map[string]interface{}{"full_set": true, "stale": false})
 	if err != nil {
 		goku.Logger().Logln(err)
 		os.Exit(1)
@@ -81,7 +81,9 @@ func AddDoc(doc MyDoc, docType string) (bool, error) {
 	bucket := GetDB()
 	defer bucket.Close()
 	doc.Type = docType
-	added, err := bucket.Add(doc.Id, 0, doc)
+	//	added, err := bucket.Add(doc.Id, 0, doc)
+	added := true
+	err := bucket.Write(doc.Id, 0, 0, doc, couchbase.Persist)
 	return added, err
 }
 
